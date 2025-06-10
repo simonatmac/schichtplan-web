@@ -1,0 +1,16 @@
+
+{
+  "name": "Schichtplan Plan B",
+  "short_name": "Plan B",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fcd400",
+  "theme_color": "#fcd400",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
