@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schichtplan für Schicht B</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  <meta name="theme-color" content="#fcd400"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+      text-align: center;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2a7ae2;
+    }
+    input[type="date"] {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Schichtplan für Schicht B</h1>
+    <p>Wähle ein Datum aus, um deine Schicht zu sehen:</p>
+    <input type="date" id="datePicker" />
+    <div class="result" id="result">Keine Auswahl</div>
+  </div>
+
+  <script>
+    const schichten = {
+      "2025-06-02": "Tagschicht",
+      "2025-06-03": "Nachtschicht",
+      "2025-06-04": "frei",
+      "2025-06-05": "frei",
+      "2025-06-06": "Tagschicht",
+      "2025-06-07": "Nachtschicht",
+      "2025-06-08": "Frei, Juhu",
+      "2025-06-09": "frei",
+      "2025-06-10": "Tagschicht",
+      "2025-06-11": "Nachtschicht",
+      "2025-06-12": "frei",
+      "2025-06-13": "frei"
+    };
+
+    const datePicker = document.getElementById('datePicker');
+    const result = document.getElementById('result');
+
+    datePicker.addEventListener('change', () => {
+      const selectedDate = datePicker.value;
+      const shift = schichten[selectedDate];
+      result.textContent = shift ? `Schicht: ${shift}` : "Keine Schichtdaten für dieses Datum.";
+    });
+
+    // Service Worker registrieren
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registriert', reg))
+        .catch(err => console.error('Service Worker Fehler', err));
+    }
+  </script>
+</body>
+</html>
